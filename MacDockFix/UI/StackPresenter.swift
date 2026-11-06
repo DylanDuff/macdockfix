@@ -131,9 +131,7 @@ private struct StackGridView: View {
                         ForEach(contents, id: \.self) { url in
                             Button { open(url) } label: {
                                 VStack(spacing: 4) {
-                                    Image(nsImage: IconProvider.shared.icon(forFile: url))
-                                        .resizable()
-                                        .frame(width: Self.tile, height: Self.tile)
+                                    IconImage(image: IconProvider.shared.icon(forFile: url), size: Self.tile)
                                     Text(FileManager.default.displayName(atPath: url.path))
                                         .font(.caption)
                                         .lineLimit(2)

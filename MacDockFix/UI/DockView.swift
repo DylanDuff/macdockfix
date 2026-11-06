@@ -87,10 +87,7 @@ private struct DockTileView: View {
         default:
             let drawn = slot.iconSize * (1 - metrics.iconInset * 2)
             if let image = IconProvider.shared.icon(for: item, trashFull: isTrashFull) {
-                Image(nsImage: image)
-                    .resizable()
-                    .interpolation(.high)
-                    .frame(width: drawn, height: drawn)
+                IconImage(image: image, size: drawn)
                     .brightness(isPressed ? -0.35 : 0)
                     .position(orientation.point(along: slot.center,
                                                 cross: metrics.iconBaseline + slot.iconSize / 2 + bounce, in: size))
@@ -136,5 +133,24 @@ private struct DockLabel: View {
                 .frame(width: Self.labelWidth, alignment: orientation == .left ? .leading : .trailing)
                 .position(orientation.point(along: slot.center, cross: crossGap + Self.labelWidth / 2, in: size))
         }
+    }
+}
+
+/// App/file icon. macOS serves different icon variants per requested size, and at small sizes it
+/// often returns the light variant even in dark mode (magnified icons were correct, resting ones
+/// weren't). Rasterising at a fixed large size and scaling down keeps the variant consistent.
+struct IconImage: View {
+    let image: NSImage
+    let size: CGFloat
+
+    static let renderSize: CGFloat = 64
+
+    var body: some View {
+        Image(nsImage: image)
+            .resizable()
+            .interpolation(.high)
+            .frame(width: Self.renderSize, height: Self.renderSize)
+            .scaleEffect(size / Self.renderSize)
+            .frame(width: size, height: size)
     }
 }
