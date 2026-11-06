@@ -1,0 +1,29 @@
+name: MacDockFix
+options:
+  bundleIdPrefix: com.dylanduff
+  deploymentTarget:
+    macOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: AQ4XYQUBV3
+    CODE_SIGN_STYLE: Automatic
+    CODE_SIGN_IDENTITY: "Apple Development"
+    ENABLE_HARDENED_RUNTIME: YES
+targets:
+  MacDockFix:
+    type: application
+    platform: macOS
+    sources:
+      - path: MacDockFix
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dylanduff.macdockfix
+        INFOPLIST_FILE: MacDockFix/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: MacDockFix/Resources/MacDockFix.entitlements
+        GENERATE_INFOPLIST_FILE: NO

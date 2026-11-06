@@ -1,0 +1,18 @@
+# Xcode
+build/
+DerivedData/
+*.xcodeproj/
+xcuserdata/
+*.xcuserstate
+
+# Agent tooling
+.claude/
+.conductor/
+.codex/
+
+# Env
+.env
+.env.*
+!.env.example
+
+.DS_Store
