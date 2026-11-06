@@ -1,20 +1,10 @@
 # MacDockFix
 
-A copy of the macOS Dock on every display. Clicking an app in a display's dock opens its window
-(or moves an existing one) on that display.
-
-- Mirrors pinned apps, running apps, recents, folders/stacks and Trash, with magnification,
-  launch bounce, running indicators and right-click menus.
-- Hides itself on whichever display currently has the real Dock.
-- Lives in the menu bar (no Dock icon of its own).
-
-## Requirements
-
-- macOS 26+, Xcode 26+, [XcodeGen](https://github.com/yonaskolb/XcodeGen)
-- Accessibility permission (to move windows between displays)
-- Automation permission for Finder (Trash state and Empty Trash)
+A copy of the macOS Dock on every display. Click an app in a display's dock and its window opens (or moves) on that display.
 
 ## Build
+
+Requires macOS 26+, Xcode and [XcodeGen](https://github.com/yonaskolb/XcodeGen).
 
 ```bash
 xcodegen generate
@@ -22,8 +12,12 @@ xcodebuild -project MacDockFix.xcodeproj -scheme MacDockFix -derivedDataPath bui
 open build/DerivedData/Build/Products/Debug/MacDockFix.app
 ```
 
-## Documentation
+Grant Accessibility access when prompted. It's needed to move windows between displays.
 
-- [Dock mirroring](docs/dock-mirroring.md): data sources, real Dock tracking, interactions
-- [Window placement](docs/window-placement.md): how windows end up on the clicked display
-- [CLAUDE.md](CLAUDE.md): architecture and conventions for contributors
+To build under your own Apple account, change `DEVELOPMENT_TEAM` in `project.yml`.
+
+More detail is in [docs/](docs/).
+
+## License
+
+[MIT](LICENSE)
